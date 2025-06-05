@@ -1,6 +1,7 @@
 @use '../mixins' as *;
 
 #home {
-    @include flex1(space-between);
-    gap: 21px;
+  @include flex1(space-between);
+  gap: 21px;
+  flex-wrap: wrap;
 }

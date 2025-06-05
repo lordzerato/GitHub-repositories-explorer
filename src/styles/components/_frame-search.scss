@@ -1,12 +1,16 @@
 @use '../mixins' as *;
 
 .frameSearch {
-    @include flex1(null, column);
-    flex: 0 1 100%;
-    color: #8E8E8E;
+  @include flex1(null, column);
+  flex: 1 0 435px;
+  color: #999999;
 }
 
 .formSearch {
-    background: #ffffff;
-    min-height: 348px;
+  @include flex1(null, column);
+  background: #ffffff;
+  min-height: 348px;
+  padding: 24px;
+  gap: 16px;
+  min-height: 80vh;
 }
