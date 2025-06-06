@@ -4,13 +4,34 @@
   @include flex1(null, column);
   flex: 1 0 435px;
   color: #999999;
-}
-
-.formSearch {
-  @include flex1(null, column);
-  background: #ffffff;
-  min-height: 348px;
-  padding: 24px;
-  gap: 16px;
-  min-height: 80vh;
+  .formSearch {
+    @include flex1(null, column);
+    background: #ffffff;
+    min-height: 348px;
+    padding: 24px;
+    gap: 16px;
+    min-height: 80vh;
+    .reposCard {
+      margin-left: 10px;
+      padding: 20px;
+      .reposCardHeader {
+        @include flex1(space-between);
+        align-items: center;
+        div {
+          display: flex;
+          gap: 5px;
+          align-items: center;
+        }
+      }
+      .reposCardBody {
+        min-height: 70px;
+        font-size: 14px;
+      }
+    }
+    .chakra-accordion__panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
 }
