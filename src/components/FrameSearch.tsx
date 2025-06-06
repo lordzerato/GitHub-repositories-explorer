@@ -4,7 +4,7 @@ type FormSearchProps = {
   title: string
 }
 
-const TheFrame = ({ title }: FormSearchProps) => {
+const FrameSearch = ({ title }: FormSearchProps) => {
   return (
     <div className="frameSearch">
       {title}
@@ -13,4 +13,4 @@ const TheFrame = ({ title }: FormSearchProps) => {
   )
 }
 
-export default TheFrame
+export default FrameSearch
