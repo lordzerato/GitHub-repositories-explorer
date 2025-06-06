@@ -7,7 +7,7 @@ const qClient = new QueryClient()
 function App() {
   return (
     <QueryClientProvider client={qClient}>
-      <BrowserRouter>
+      <BrowserRouter basename="/GitHub-repositories-explorer/">
         <MainRoutes />
       </BrowserRouter>
     </QueryClientProvider>
