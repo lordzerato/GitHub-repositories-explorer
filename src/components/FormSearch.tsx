@@ -15,12 +15,6 @@ import { useState } from 'react'
 import { useSearchUser, useSearchRepos } from '../hooks/githubApi'
 import ReposCard from './ReposCard'
 
-type Repository = {
-  name: string
-  description: string
-  score: number
-}
-
 const FormSearch = () => {
   const [value, setValue] = useState('')
   const [page, setPage] = useState(1)
