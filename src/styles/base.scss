@@ -1,6 +1,11 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 #root {
   width: 100%;
-  margin: 80px 60px 0;
 }
 
 body {

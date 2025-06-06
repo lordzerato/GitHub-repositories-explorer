@@ -2,8 +2,15 @@
 
 .frameSearch {
   @include flex1(null, column);
-  flex: 1 0 435px;
+  flex: 1 0 235px;
   color: #999999;
+  max-width: 100%;
+  @media (min-width: 539px) {
+    max-width: 44vw;
+  }
+  @media (min-width: 811px) {
+    max-width: 100%;
+  }
   .formSearch {
     @include flex1(null, column);
     background: #ffffff;
@@ -12,7 +19,6 @@
     gap: 16px;
     min-height: 80vh;
     .reposCard {
-      margin-left: 10px;
       padding: 20px;
       .reposCardHeader {
         @include flex1(space-between);
@@ -32,6 +38,7 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
+      padding-right: 10px;
     }
   }
 }

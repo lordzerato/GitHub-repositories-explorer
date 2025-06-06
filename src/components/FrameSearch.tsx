@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/react'
 import FormSearch from './FormSearch'
 
 type FormSearchProps = {
@@ -6,10 +7,10 @@ type FormSearchProps = {
 
 const FrameSearch = ({ title }: FormSearchProps) => {
   return (
-    <div className="frameSearch">
+    <Box className="frameSearch">
       {title}
       <FormSearch />
-    </div>
+    </Box>
   )
 }
 
