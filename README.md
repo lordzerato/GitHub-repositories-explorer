@@ -1,23 +1,32 @@
-# GitHub Repositories Explorer
+# RepEx - GitHub Repositories Explorer
 
-A simple GitHub Repositories Explorer built with:
+A lightweight and responsive GitHub repositories explorer with modern UI, powered by Chakra UI and React Query.
 
-* React
-* TypeScript
-* Vite
-* Chakra UI
-* Sass (SCSS)
-* TanStack React Query
-* Prettier & ESLint
+![Project Status](https://img.shields.io/badge/status-in%20development-yellow)
+
+✨ Responsive and accessible  
+🌙 Dark mode supported  
+📱 Mobile-friendly UI 
 
 ## Features
 
-* Search GitHub users
-* View user repositories
-* Pagination with clean UI
-* API state management using React Query
-* Styled with Chakra UI and custom SCSS
-* Code linted and formatted using ESLint and Prettier
+- ✅ Search GitHub users
+- ✅ View user repositories
+- ✅ API state management (cache) using React Query
+- ✅ Dark / Light mode toggle
+- ⏳ Error handling (In Progress)
+- ⏳ Responsive layout (In Progress)
+- 🛠️ Search GitHub Repository (Planned)
+- 🛠️ Trending repositories (Planned)
+- 🛠️ Loading skeleton (Planned)
+- 🛠️ Sort & filter repositories (Planned)
+- 🛠️ Repository detail view (Planned)
+
+## Screenshots
+
+| Search UI | Repositories List |
+|-----------|-------------------|
+| ![Search](./screenshots/search.png) | ![Repo List](./screenshots/repos.png) |
 
 ## Getting Started
 
@@ -38,19 +47,18 @@ npm install
 
 Before running the project, you need to configure a `.env` file with your GitHub **Personal Access Token (PAT)**.
 
-Create a `.env` file in the project root, and add the following:
+Use file `.env.example` or Create a `.env` file in the project root, and add the following:
 
 ```env
 VITE_AUTH_TOKEN=your_github_pat_here
 ```
 
-You can generate a **fine-grained PAT** in GitHub settings:
-**Settings → Developer settings → Personal access tokens → Fine-grained tokens**
-
-For this project, you only need `read-only` permission for:
-
-* Repository contents
-* Metadata
+> You can generate a **fine-grained PAT** in GitHub settings:<br>
+> **Settings → Developer settings → Personal access tokens → Fine-grained tokens**
+> 
+> For this project, you only need `read-only` permission for:
+> * Repository contents
+> * Metadata
 
 ### 4. Run the development server
 
@@ -79,17 +87,32 @@ npm run build
 
 ## Git Workflow
 
-This project follows a basic Git flow:
+### This project follows a basic Git flow:
 
 * `main`: production branch
 * `dev`: development branch
 * `feature/*`: feature branches (example: `feature/search-account`)
+* `fix/*`: bugfix branches (e.g. `fix/fetch-error`)
 
-Typical flow:
+### Typical workflow:
 
-1. Develop features in `feature/*` branches.
-2. Merge `feature/*` into `dev` for testing.
-3. Merge `dev` into `main` when ready to release.
+1. **New feature** → create from `dev`:
+   ```bash
+   git checkout dev
+   git checkout -b feature/your-feature-name
+   ```
+2. **Bug fix** → also branch from `dev`:
+   ```bash
+   git checkout dev
+   git checkout -b feature/your-feature-name
+   ```
+3. Commit your changes locally, push to origin, and open a Pull Request (PR) into `dev`.
+4. After review and testing, merge `dev` into `main` for production release
+
+### Naming convention:
+
+* Use kebab-case for branch names: `feature/add-filter`, `fix/loading-spinner`.
+* Keep commits atomic and meaningful.
 
 ## License
 
