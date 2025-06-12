@@ -1,11 +1,15 @@
 import { Routes, Route } from 'react-router-dom'
 import MainLayout from '../layouts'
-import TheHome from '../pages/TheHome'
+import SearchUser from '@/pages/SearchUser'
+import SearchRepo from '@/pages/SearchRepo'
+import TrendingRepo from '@/pages/TrendingRepo'
 
 const MainRoutes = () => (
   <Routes>
     <Route element={<MainLayout />}>
-      <Route path="/" element={<TheHome />} />
+      <Route path="/" element={<SearchUser />} />
+      <Route path="/repos" element={<SearchRepo />} />
+      <Route path="/trends" element={<TrendingRepo />} />
     </Route>
   </Routes>
 )

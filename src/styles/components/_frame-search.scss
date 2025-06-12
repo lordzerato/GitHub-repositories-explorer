@@ -2,19 +2,17 @@
 
 .frameSearch {
   @include flex1(null, column);
-  flex: 1 0 235px;
-  color: #999999;
+  flex: 1 0 270px;
   max-width: 100%;
-  @media (min-width: 539px) {
+  @media (min-width: 523px) {
     max-width: 44vw;
   }
-  @media (min-width: 811px) {
-    max-width: 100%;
-  }
+  // @media (min-width: 811px) {
+  //   max-width: 100%;
+  // }
   .formSearch {
     @include flex1(null, column);
-    background: #ffffff;
-    min-height: 348px;
+    background-color: var(--chakra-colors-bg\.frame);
     padding: 24px;
     gap: 16px;
     min-height: 80vh;
@@ -28,10 +26,6 @@
           gap: 5px;
           align-items: center;
         }
-      }
-      .reposCardBody {
-        min-height: 70px;
-        font-size: 14px;
       }
     }
     .chakra-accordion__panel {

@@ -1,18 +1,21 @@
 import {
-  FormControl,
+  Field,
   Input,
   Button,
   ButtonGroup,
+  NativeSelect,
+  Spinner,
+  Alert
+} from '@chakra-ui/react'
+import {
   Accordion,
   AccordionItem,
   AccordionButton,
-  AccordionIcon,
   AccordionPanel,
-  Select,
-  Spinner
-} from '@chakra-ui/react'
+  AccordionIcon
+} from '@chakra-ui/accordion'
 import { useState } from 'react'
-import { useSearchUser, useSearchRepos } from '../hooks/githubApi'
+import { useSearchUser, useSearchUserRepos } from '@/hooks/useGithub'
 import ReposCard from './ReposCard'
 
 const FormSearch = () => {
@@ -38,7 +41,7 @@ const FormSearch = () => {
     isLoading: isLoadingRepos,
     isError: isErrorRepos,
     error: errorRepos
-  } = useSearchRepos(openUser)
+  } = useSearchUserRepos(openUser)
   const repos = dataRepos ?? []
 
   const onSubmitForm = (e: React.FormEvent) => {
@@ -51,32 +54,39 @@ const FormSearch = () => {
   const onChangePage = (v: number) => {
     setPage(v)
   }
-  const onChangeUser = async (index: number) => {
-    console.log(index)
-    console.log(users[index].login)
+  const onChangeUser = (index: number) => {
     if (index < 0) return
     setOpenUser(users[index].login)
   }
   return (
     <form className="formSearch" onSubmit={onSubmitForm}>
-      <FormControl>
+      <Field.Root>
+        <Field.Label color="bg.text">Username</Field.Label>
         <Input
-          variant="outline"
-          placeholder="Enter username"
+          colorPalette="bg.palette"
+          size="lg"
+          variant="subtle"
+          borderRadius={8}
+          placeholder="Enter at least 3 characters"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
-      </FormControl>
-      <Button type="submit" colorScheme="blue" isLoading={isLoadingUser}>
+      </Field.Root>
+      <Button
+        type="submit"
+        variant="surface"
+        colorPalette="bg.palette"
+        borderRadius={8}
+        disabled={value.length < 3}
+        loading={isLoadingUser}
+      >
         Search
       </Button>
-
       {isErrorUser && <p>Error: {(errorUser as Error).message}</p>}
       {flagSubmit && !isLoadingUser && !isErrorUser && !users.length && (
         <p>No results found.</p>
       )}
-
-      <Accordion allowToggle onChange={onChangeUser}>
+      <Accordion allowToggle onChange={onChangeUser} color="purple">
         {users.map((user) => (
           <AccordionItem key={user.id}>
             <AccordionButton>
@@ -84,51 +94,77 @@ const FormSearch = () => {
               <AccordionIcon />
             </AccordionButton>
             <AccordionPanel>
-              {openUser === user.login && isLoadingRepos && <Spinner />}
+              {openUser === user.login && isLoadingRepos && (
+                <Spinner size="lg" />
+              )}
               {openUser === user.login && isErrorRepos && (
-                <p>{(errorRepos as Error).message}</p>
+                <Alert.Root
+                  status="error"
+                  mt={2}
+                  borderRadius="md"
+                  variant="subtle"
+                >
+                  <Alert.Indicator />
+                  <Alert.Description fontSize="sm">
+                    {(errorRepos as Error).message}
+                  </Alert.Description>
+                </Alert.Root>
               )}
               {openUser === user.login &&
                 !isLoadingRepos &&
                 !isErrorRepos &&
                 !repos.length && <p>No results found.</p>}
               {repos.map((repo) => (
-                <ReposCard item={repo} />
+                <ReposCard key={repo.id} item={repo} />
               ))}
             </AccordionPanel>
           </AccordionItem>
         ))}
       </Accordion>
-
       {totalPages > 1 && (
         <ButtonGroup mt={4} style={{ justifyContent: 'center' }}>
           <Button
+            colorPalette="bg.palette"
+            variant="surface"
+            borderRadius={8}
             onClick={() => onChangePage(page - 1)}
-            isDisabled={page === 1}
-            isLoading={isFetchingUser && !isLoadingUser}
+            disabled={page === 1}
+            loading={isFetchingUser && !isLoadingUser}
           >
             Prev
           </Button>
 
-          <Select
-            value={page}
-            onChange={(e) => onChangePage(Number(e.target.value))}
+          <NativeSelect.Root
             width="auto"
+            variant="subtle"
+            colorPalette="bg.palette"
+            borderRadius={8}
           >
-            {Array.from({ length: totalPages }).map((_, i) => {
-              const pageNum = i + 1
-              return (
-                <option key={pageNum} value={pageNum}>
-                  Page {pageNum}
-                </option>
-              )
-            })}
-          </Select>
+            <NativeSelect.Field
+              value={page}
+              height="2.67rem"
+              borderRadius={8}
+              onChange={(e) => onChangePage(Number(e.target.value))}
+            >
+              {Array.from({ length: totalPages }).map((_, i) => {
+                const pageNum = i + 1
+                return (
+                  <option key={pageNum} value={pageNum}>
+                    Page {pageNum}
+                  </option>
+                )
+              })}
+            </NativeSelect.Field>
+            <NativeSelect.Indicator />
+          </NativeSelect.Root>
 
           <Button
+            colorPalette="bg.palette"
+            variant="surface"
+            borderRadius={8}
             onClick={() => onChangePage(page + 1)}
-            isDisabled={page === totalPages}
-            isLoading={isFetchingUser && !isLoadingUser}
+            disabled={page === totalPages}
+            loading={isFetchingUser && !isLoadingUser}
           >
             Next
           </Button>

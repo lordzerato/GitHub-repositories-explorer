@@ -1,17 +1,20 @@
 import { Outlet } from 'react-router-dom'
-import { Box, Container } from '@chakra-ui/react'
+import { Container, Flex } from '@chakra-ui/react'
+import { ColorModeProvider } from '@/components/ui/color-mode'
+import TheHeader from './TheHeader'
+import TheFooter from './TheFooter'
 
 const MainLayout = () => {
   return (
-    <Box
-      id="main-layout"
-      minH="100vh"
-      m={{ base: '8px', md: '16px', lg: '32px' }}
-    >
-      <Container as="main" maxW="container.2xl" py={8}>
-        <Outlet />
-      </Container>
-    </Box>
+    <Flex id="main-layout" minH="100vh" direction="column">
+      <ColorModeProvider>
+        <TheHeader />
+        <Container as="main" maxW="breakpoint-3xl" py={4} minH="90vh">
+          <Outlet />
+        </Container>
+        <TheFooter />
+      </ColorModeProvider>
+    </Flex>
   )
 }
 

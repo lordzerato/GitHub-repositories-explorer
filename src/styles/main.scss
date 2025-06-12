@@ -1,5 +1,4 @@
 // Import global styles
-@use 'variables' as *;
 @use 'mixins' as *;
 @use 'base' as *;
 @use 'layout' as *;
@@ -8,4 +7,4 @@
 @use 'components/frame-search' as *;
 
 // Import style of pages
-@use 'pages/Home.scss' as *;
+// @use 'pages/Home.scss' as *;

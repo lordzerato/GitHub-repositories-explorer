@@ -7,7 +7,7 @@ type FormSearchProps = {
 
 const FrameSearch = ({ title }: FormSearchProps) => {
   return (
-    <Box className="frameSearch">
+    <Box className="frameSearch" color="bg.text">
       {title}
       <FormSearch />
     </Box>
