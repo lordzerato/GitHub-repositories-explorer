@@ -5,7 +5,6 @@ import {
   useResolvedPath
 } from 'react-router-dom'
 import { useColorModeValue } from '@/components/ui/color-mode'
-import { scale } from 'framer-motion'
 
 interface NavLinkProps {
   to: string
